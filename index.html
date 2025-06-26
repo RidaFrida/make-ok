@@ -1,14 +1,82 @@
 <!doctype html>
-<meta charset="utf-8">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Готово!</title>
+
 <style>
-  body{font:16px/1.45 system-ui, sans-serif; text-align:center; padding:3rem}
-  h2{color:#3ba5ff; margin-top:0}
+  /* ---------- базовая палитра ---------- */
+  :root {
+    --bg: #15141c;                /* общий фон */
+    --card-bg: #1d1c25;           /* фон карточки */
+    --violet: #755dff;            /* акцент – как «Видео»-кнопка */
+    --text: #e6e8f2;              /* основной текст */
+    --sub:  #9ca1b5;              /* вторичный */
+  }
+
+  /* ---------- общий фон ---------- */
+  body{
+    margin:0;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:var(--bg);
+    color:var(--text);
+    font:16px/1.45 system-ui, -apple-system, "Segoe UI",
+         Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+
+  /* ---------- карточка ---------- */
+  .card{
+    width:340px;
+    padding:32px 28px;
+    background:var(--card-bg);
+    border-radius:24px;
+    box-shadow:0 14px 45px rgba(0,0,0,.45);
+    text-align:center;
+    animation:pop .5s cubic-bezier(.25,1.3,.5,1);
+  }
+  @keyframes pop{
+    0%{transform:scale(.8);opacity:0}
+    100%{transform:scale(1);opacity:1}
+  }
+
+  h1{
+    margin:0 0 4px;
+    font-size:28px;
+    letter-spacing:.6px;
+    color:var(--violet);
+    font-weight:700;
+  }
+  p{
+    margin:0 0 26px;
+    color:var(--sub);
+  }
+
+  /* ---------- кнопка возврата ---------- */
+  .btn{
+    display:inline-block;
+    padding:13px 22px;
+    font-size:15px;
+    font-weight:600;
+    color:#fff;
+    background:var(--violet);
+    border:none;
+    border-radius:14px;
+    cursor:pointer;
+    text-decoration:none;
+    transition:transform .15s;
+  }
+  .btn:hover{transform:translateY(-2px)}
 </style>
 
-<h2>✅ Всё готово</h2>
-<p>Секунду… возвращаю вас в Telegram.</p>
+<div class="card">
+  <h1>✅ Готово</h1>
+  <p>Секунду… возвращаю тебя в Telegram.</p>
+  <a class="btn" href="tg://resolve?domain=YourBot">Вернуться в бот</a>
+</div>
 
 <script>
+  /* fallback – если браузер не откроет tg-ссылку сам */
   setTimeout(()=>location.href='tg://resolve?domain=YourBot',800);
 </script>
