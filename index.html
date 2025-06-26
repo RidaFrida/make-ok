@@ -38,6 +38,21 @@
   <p>Перегенерируем ваш контент — это займёт пару секунд.</p>
   <a class="btn" href="tg://resolve?domain=YourBot">Вернуться в бот</a>
 </div>
+<script>
+  /* читаем chat_id и tr из query-строки */
+  const qs  = new URLSearchParams(location.search);
+  const cid = qs.get('chat_id');
+  const tr  = qs.get('tr');
+
+  /* вызываем ваш Make-вебхук (CORS не нужен, поэтому mode:'no-cors') */
+  if (cid && tr){
+      fetch(`https://hook.eu2.make.com/1w8mrh1pydyarigwmo3eslmnmukcb947?chat_id=${cid}&tr=${tr}`,
+            { mode:'no-cors' });
+  }
+
+  /* авто-возврат в бота */
+  setTimeout(() => location.href='tg://resolve?domain=YourBot', 1200);
+</script>
 
 <script>
   /* автоматический возврат, если пользователь не нажмёт кнопку */
